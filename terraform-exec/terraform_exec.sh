@@ -11,8 +11,6 @@ COMMAND=${TERRAFORM_COMMAND}
 APPLY="apply"
 DESTROY="destroy"
 
-cd check_prometheus
-
 terraform init \
 -backend-config="storage_account_name=dotnetkeyvaultmanagement" \
 -backend-config="container_name=tfstatedev" \
