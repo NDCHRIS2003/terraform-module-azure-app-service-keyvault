@@ -16,6 +16,8 @@ terraform init \
 -backend-config="container_name=tfstatedev" \
 -backend-config="key=vis.terraform.tfstate" \
 -backend-config="resource_group_name=myAzureKeyVault"
+-backend-config="subscription_id=${ARM_SUBSCRIPTION_ID}"
+-backend-config="tenant_id=${ARM_TENANT_ID}"
 
 terraform validate
 
