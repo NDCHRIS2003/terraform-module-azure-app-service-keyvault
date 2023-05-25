@@ -7,8 +7,7 @@ terraform {
   }
 
   backend "azurerm" {   
-        use_msi = true 
-        subscription_id      = "0f938566-66ed-4249-b81d-887dfefeaf4f"    
+        use_msi = true         
         # storage_account_name = "dotnetkeyvaultmanagement"
         # container_name       = "tfstatedev"
         # key                  = "vis.terraform.tfstate"
