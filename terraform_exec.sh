@@ -12,12 +12,12 @@ APPLY="apply"
 DESTROY="destroy"
 
 terraform init \
--backend-config="subscription_id=${ARM_SUBSCRIPTION_ID}" \
+# -backend-config="subscription_id=${ARM_SUBSCRIPTION_ID}" \
 -backend-config="storage_account_name=dotnetkeyvaultmanagement" \
 -backend-config="container_name=tfstatedev" \
 -backend-config="key=vis.terraform.tfstate" \
 -backend-config="resource_group_name=myAzureKeyVault" \
--backend-config="tenant_id=${ARM_TENANT_ID}"
+# -backend-config="tenant_id=${ARM_TENANT_ID}"
 
 terraform validate
 
