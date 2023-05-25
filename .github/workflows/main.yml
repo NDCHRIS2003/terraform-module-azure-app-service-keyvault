@@ -42,8 +42,7 @@ jobs:
         env:             
           TERRAFORM_COMMAND: apply
         run: |
-          pwd          
-          cd terraform-exec
+          pwd                    
           bash terraform_exec.sh       
       
 
