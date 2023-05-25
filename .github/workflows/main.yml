@@ -44,6 +44,6 @@ jobs:
         run: |
           pwd          
           cd terraform-exec
-          bash terraform_test_exec.sh       
+          bash terraform_exec.sh       
       
 
