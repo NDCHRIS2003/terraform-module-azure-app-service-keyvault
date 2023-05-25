@@ -1,1 +1,49 @@
+name: "Terraform Deployment"
+on:
+  push:
+    branches:
+      - main
+  pull_request:         
+  workflow_dispatch:
+ # The type of permissions needed for OIDC authentication
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+
+# The credentials needed for terraform to properly authenticate with azure environment (OIDC authentication)
+# This generated using service principle
+env:
+  ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+  ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
+
+jobs:
+  terraformApply:
+    name: "Terraform Apply"
+    runs-on: ubuntu-latest
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:    
+      - name: Checkout Repository
+        uses: actions/checkout@master             
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.2.6
+        
+      - name: Run Terraform apply
+        env:             
+          TERRAFORM_COMMAND: apply
+        run: |
+          pwd          
+          cd terraform-exec
+          bash terraform_test_exec.sh       
+      
 
