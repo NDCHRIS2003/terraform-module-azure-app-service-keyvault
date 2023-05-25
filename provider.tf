@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "azurerm" {   
-        # use_oidc = true         
+        use_oidc = true         
         storage_account_name = "dotnetkeyvaultmanagement"
         container_name       = "tfstatedev"
         key                  = "vis.terraform.tfstate"
@@ -17,5 +17,5 @@ terraform {
 
 provider "azurerm" {
     features {}
-    # use_oidc = true 
+    use_oidc = true 
 }
