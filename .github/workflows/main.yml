@@ -19,10 +19,10 @@ permissions:
 # The credentials needed for terraform to properly authenticate with azure environment (OIDC authentication)
 # This generated using service principle
 env:
-  ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
-  ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
-  ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-  ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
+  ARM_CLIENT_ID: "${{ secrets.ARM_CLIENT_ID }}"
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_AD_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: "${{ secrets.ARM_SUBSCRIPTION_ID }}"
+  ARM_TENANT_ID: "${{ secrets.ARM_TENANT_ID }}"
 
 jobs:
   terraformApply:
@@ -36,10 +36,17 @@ jobs:
 
     steps:    
       - name: Checkout Repository
-        uses: actions/checkout@master             
+        uses: actions/checkout@master
+
+      # - name: Azure Login
+      #   uses: azure/login@v1
+      #   with:
+      #     client-id: ${{ secrets.ARM_CLIENT_ID }}
+      #     tenant-id: ${{ secrets.ARM_TENANT_ID }}
+      #     subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }       
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.2.6
         
