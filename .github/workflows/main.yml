@@ -36,6 +36,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@master
 
+# This can be used to authenticate to your azure env if you did not set the global environment variables above for the azure credentials
       # - name: Azure Login
       #   uses: azure/login@v1
       #   with:
@@ -50,7 +51,7 @@ jobs:
         
       - name: Run Terraform apply
         env:             
-          TERRAFORM_COMMAND: apply
+          TERRAFORM_COMMAND: destroy
         run: |
           pwd                    
           bash terraform_exec.sh       
