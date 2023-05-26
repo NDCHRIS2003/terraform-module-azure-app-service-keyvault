@@ -38,12 +38,12 @@ jobs:
         uses: actions/checkout@master
 
 # This can be used to authenticate to your azure env if you did not set the global environment variables above for the azure credentials
-      # - name: Azure Login
-      #   uses: azure/login@v1
-      #   with:
-      #     client-id: ${{ secrets.ARM_CLIENT_ID }}
-      #     tenant-id: ${{ secrets.ARM_TENANT_ID }}
-      #     subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }       
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.ARM_CLIENT_ID }}
+          tenant-id: ${{ secrets.ARM_TENANT_ID }}
+          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }       
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
