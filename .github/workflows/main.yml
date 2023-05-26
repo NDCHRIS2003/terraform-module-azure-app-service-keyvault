@@ -71,18 +71,18 @@ jobs:
         shell: bash
 
     steps:    
-      - name: Generate token
-        id: generate_token
-        uses: tibdex/github-app-token@v1
-        with:
-          app_id: ${{ secrets.APP_ID }}  # Github App APP_ID
-          private_key: ${{ secrets.APP_PRIVATE_KEY }} # Create a Github App and generate App Private Key
-      - name: Wait for approval
-        uses: trstringer/manual-approval@v1
-        with:
-          secret: ${{ steps.generate_token.outputs.token }}
-          approvers: ndchris  # You can replace this with teams that you want to approve this.
-          minimum-approvals: 1
+      # - name: Generate token
+      #   id: generate_token
+      #   uses: tibdex/github-app-token@v1
+      #   with:
+      #     app_id: ${{ secrets.APP_ID }}  # Github App APP_ID
+      #     private_key: ${{ secrets.APP_PRIVATE_KEY }} # Create a Github App and generate App Private Key
+      # - name: Wait for approval
+      #   uses: trstringer/manual-approval@v1
+      #   with:
+      #     secret: ${{ steps.generate_token.outputs.token }}
+      #     approvers: ndchris  # You can replace this with teams that you want to approve this.
+      #     minimum-approvals: 1
 
       - name: Checkout Repository
         uses: actions/checkout@master   
