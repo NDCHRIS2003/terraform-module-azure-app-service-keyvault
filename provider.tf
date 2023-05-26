@@ -8,10 +8,10 @@ terraform {
 
   backend "azurerm" {   
         use_oidc = true         
-        storage_account_name = "dotnetkeyvaultmanagement"
-        container_name       = "tfstatedev"
-        key                  = "vis.terraform.tfstate"
-        resource_group_name = "myAzureKeyVault"        
+        # storage_account_name = "dotnetkeyvaultmanagement"
+        # container_name       = "tfstatedev"
+        # key                  = "vis.terraform.tfstate"
+        # resource_group_name = "myAzureKeyVault"        
   }
 }
 

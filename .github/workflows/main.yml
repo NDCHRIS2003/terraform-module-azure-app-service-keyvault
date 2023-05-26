@@ -14,7 +14,8 @@ permissions:
   pull-requests: write
 
 # The credentials needed for terraform to properly authenticate with azure environment (OIDC authentication)
-# This generated using service principle
+# This generated using service principle. Before this is used the federated credentials of the App registration (Service principle)
+# Must be configured. You will need your github organization name and the repo name to do this.
 env:
   ARM_CLIENT_ID: "${{ secrets.ARM_CLIENT_ID }}"
   ARM_CLIENT_SECRET: ${{ secrets.ARM_AD_CLIENT_SECRET }}
@@ -49,7 +50,7 @@ jobs:
         
       - name: Run Terraform apply
         env:             
-          TERRAFORM_COMMAND: destroy
+          TERRAFORM_COMMAND: apply
         run: |
           pwd                    
           bash terraform_exec.sh       
