@@ -6,7 +6,7 @@ on:
       # - feature/* 
   pull_request:     
     branches:
-    - main   
+    - - feature/*    
   workflow_dispatch:
  # The type of permissions needed for OIDC authentication
 permissions:
@@ -94,7 +94,7 @@ jobs:
         
       - name: Run Terraform apply
         env:             
-          TERRAFORM_COMMAND: destroy
+          TERRAFORM_COMMAND: apply
         run: |
           pwd                    
           bash terraform_exec.sh       
