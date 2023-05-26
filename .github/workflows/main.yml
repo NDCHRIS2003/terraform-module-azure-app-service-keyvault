@@ -6,7 +6,7 @@ on:
       # - feature/* 
   pull_request:     
     branches:
-    - - feature/*    
+    - feature/*    
   workflow_dispatch:
  # The type of permissions needed for OIDC authentication
 permissions:
