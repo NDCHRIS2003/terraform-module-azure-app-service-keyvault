@@ -94,7 +94,7 @@ jobs:
         
       - name: Run Terraform apply
         env:             
-          TERRAFORM_COMMAND: destroy
+          TERRAFORM_COMMAND: apply
         run: |
           pwd                    
           bash terraform_exec.sh       
