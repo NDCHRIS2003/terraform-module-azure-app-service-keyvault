@@ -63,7 +63,7 @@ jobs:
   terraform-apply:
     name: "Terraform Apply"
     runs-on: ubuntu-latest
-    needs: [terraform-plan]
+    # needs: [terraform-plan]
     # if: github.event_name != 'pull_request' # run only when it is not PR
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
