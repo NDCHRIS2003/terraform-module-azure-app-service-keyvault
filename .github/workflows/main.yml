@@ -3,10 +3,10 @@ on:
   push:
     branches:
       - main
-      - feature/* 
+      # - feature/* 
   pull_request:     
     branches:
-    - feature/*    
+    - main   
   workflow_dispatch:
  # The type of permissions needed for OIDC authentication
 permissions:
