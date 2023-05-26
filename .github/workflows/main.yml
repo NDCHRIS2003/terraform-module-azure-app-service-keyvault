@@ -24,47 +24,39 @@ env:
   ARM_TENANT_ID: "${{ secrets.ARM_TENANT_ID }}"
 
 jobs:
-  # terraform-plan:
-  #   name: "Terraform Plan"
-  #   runs-on: ubuntu-latest
+  terraform-plan:
+    name: "Terraform Plan"
+    runs-on: ubuntu-latest
 
-  #   # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-  #   defaults:
-  #     run:
-  #       shell: bash
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
 
-  #   steps:    
-  #     - name: Checkout Repository
-  #       uses: actions/checkout@master
+    steps:    
+      - name: Checkout Repository
+        uses: actions/checkout@master 
 
-# This can be used to authenticate to your azure env if you did not set the global environment variables above for the azure credentials
-      # - name: Azure Login
-      #   uses: azure/login@v1
-      #   with:
-      #     client-id: ${{ secrets.ARM_CLIENT_ID }}
-      #     tenant-id: ${{ secrets.ARM_TENANT_ID }}
-      #     subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }       
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.2.6
 
-      # - name: Setup Terraform
-      #   uses: hashicorp/setup-terraform@v1
-      #   with:
-      #     terraform_version: 1.2.6
-
-      # - name: Terraform Init
-      #   run: |
-      #     terraform init
+      - name: Terraform Init
+        run: |
+          terraform init
         
-      # - name: Run Terraform Plan        
-      #   run: |
-      #     pwd                    
-      #     terraform plan -input=false
+      - name: Run Terraform Plan        
+        run: |
+          pwd                    
+          terraform plan -input=false
 
 
   terraform-apply:
     name: "Terraform Apply"
     runs-on: ubuntu-latest
-    # needs: [terraform-plan]
-    # if: github.event_name != 'pull_request' # run only when it is not PR
+    needs: [terraform-plan]
+    if: github.event_name != 'pull_request' # run only when it is not PR
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
@@ -94,7 +86,7 @@ jobs:
         
       - name: Run Terraform apply
         env:             
-          TERRAFORM_COMMAND: destroy
+          TERRAFORM_COMMAND: apply
         run: |
           pwd                    
           bash terraform_exec.sh       
